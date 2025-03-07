@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://cm6hdt83ql4m3"]
+
+[ext_resource type="Script" path="res://scenes/levels/game_scene.gd" id="1_2wx7c"]
+[ext_resource type="Script" path="res://scenes/levels/money_manager.gd" id="2_0ft5e"]
+[ext_resource type="PackedScene" uid="uid://cgo2p83k3w1b5" path="res://scenes/objects/MoneyGatherer/money_gatherer.tscn" id="2_7am51"]
+[ext_resource type="Texture2D" uid="uid://carvnet4mal8f" path="res://assets/sprites/button2.png" id="3_r0bwr"]
+[ext_resource type="Texture2D" uid="uid://c0cwli71ouq4f" path="res://assets/sprites/button1.png" id="4_n4omq"]
+[ext_resource type="Script" path="res://scenes/levels/pause.gd" id="6_j1qgn"]
+[ext_resource type="PackedScene" uid="uid://b33danydttb7n" path="res://scenes/ui/elements/button/audio_button.tscn" id="7_uw8en"]
+
+[node name="GameScene" type="Node2D" node_paths=PackedStringArray("money_gatherers")]
+script = ExtResource("1_2wx7c")
+money_gatherers = [NodePath("Gatherers/MoneyGatherer"), NodePath("Gatherers/MoneyGatherer2"), NodePath("Gatherers/MoneyGatherer3")]
+
+[node name="MoneyManager" type="Node" parent="."]
+script = ExtResource("2_0ft5e")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 240)
+
+[node name="Gatherers" type="Node2D" parent="."]
+
+[node name="MoneyGatherer" parent="Gatherers" instance=ExtResource("2_7am51")]
+unique_name_in_owner = true
+position = Vector2(139, 312)
+icon_to_show = ExtResource("3_r0bwr")
+
+[node name="MoneyGatherer2" parent="Gatherers" instance=ExtResource("2_7am51")]
+unique_name_in_owner = true
+position = Vector2(308, 312)
+icon_to_show = ExtResource("4_n4omq")
+amount_to_earn = 50
+disabled = true
+cool_down = 3.0
+
+[node name="MoneyGatherer3" parent="Gatherers" instance=ExtResource("2_7am51")]
+unique_name_in_owner = true
+position = Vector2(484, 312)
+amount_to_earn = 100
+disabled = true
+cool_down = 8.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10000000000000000000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pause" type="PanelContainer" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(256, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -50.0
+offset_right = 128.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_j1qgn")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Pause"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause/MarginContainer"]
+layout_mode = 2
+
+[node name="ContinueButton" parent="CanvasLayer/Pause/MarginContainer/VBoxContainer" instance=ExtResource("7_uw8en")]
+layout_mode = 2
+text = "Continue"
+
+[node name="MainMenuButton" parent="CanvasLayer/Pause/MarginContainer/VBoxContainer" instance=ExtResource("7_uw8en")]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="CanvasLayer/Pause/MarginContainer/VBoxContainer/ContinueButton" to="CanvasLayer/Pause" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/MarginContainer/VBoxContainer/MainMenuButton" to="CanvasLayer/Pause" method="_on_main_menu_button_pressed"]

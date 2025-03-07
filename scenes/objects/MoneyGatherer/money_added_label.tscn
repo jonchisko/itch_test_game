@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb2h8q0yf0ekc"]
+
+[ext_resource type="Script" path="res://scenes/objects/MoneyGatherer/money_added_label.gd" id="1_suqb0"]
+
+[node name="MoneyAddedLabel" type="Label"]
+offset_left = 235.0
+offset_top = 205.0
+offset_right = 275.0
+offset_bottom = 228.0
+pivot_offset = Vector2(20, 11)
+text = "+200"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_suqb0")
+money = 200
+up_amount = -40
+scale_amount = 1.2
+duration = 0.3

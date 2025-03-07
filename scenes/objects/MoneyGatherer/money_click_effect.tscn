@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfikyf3j6k1sa"]
+
+[ext_resource type="Texture2D" uid="uid://c76lq72wyhttt" path="res://assets/sprites/butto3.png" id="2_fg4lq"]
+[ext_resource type="Script" path="res://scenes/objects/MoneyGatherer/money_click_effect.gd" id="2_qwfxt"]
+
+[node name="MoneyClickEffect" type="CPUParticles2D"]
+position = Vector2(263, 222)
+emitting = false
+amount = 16
+lifetime = 0.78
+one_shot = true
+explosiveness = 0.33
+lifetime_randomness = 0.18
+texture = ExtResource("2_fg4lq")
+direction = Vector2(0, -1)
+spread = 79.05
+gravity = Vector2(0, 600)
+initial_velocity_min = 412.16
+initial_velocity_max = 716.21
+tangential_accel_min = -9.46
+script = ExtResource("2_qwfxt")
+texture_to_show = ExtResource("2_fg4lq")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b33danydttb7n"]
+
+[ext_resource type="Script" path="res://scenes/ui/elements/button/audio_button.gd" id="1_6ryq0"]
+[ext_resource type="AudioStream" uid="uid://c52asav5cc5ey" path="res://assets/audio/click4.ogg" id="1_ceeno"]
+
+[node name="AudioButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Click"
+script = ExtResource("1_6ryq0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ceeno")
+bus = &"SFX"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
